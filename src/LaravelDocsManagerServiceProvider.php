@@ -26,7 +26,7 @@ class LaravelDocsManagerServiceProvider extends PackageServiceProvider
     public function packageRegistered(): void
     {
         $this->app->singleton(LaravelDocsManager::class, function () {
-            return new LaravelDocsManager();
+            return new LaravelDocsManager;
         });
     }
 }

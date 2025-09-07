@@ -18,7 +18,7 @@ class DocsController extends Controller
     public function index(Request $request)
     {
         $markdownFiles = $this->docsManager->getMarkdownFiles();
-        
+
         return view('laravel-docs-manager::index', [
             'message' => 'Browse your markdown documentation files below.',
             'markdownFiles' => $markdownFiles,
@@ -31,13 +31,13 @@ class DocsController extends Controller
     {
         $htmlContent = $this->docsManager->getMarkdownContentAsHtml($path);
         $rawContent = $this->docsManager->getMarkdownContent($path);
-        
+
         if ($htmlContent === null) {
             abort(404, 'Documentation file not found.');
         }
-        
+
         $markdownFiles = $this->docsManager->getMarkdownFiles();
-        
+
         return view('laravel-docs-manager::show', [
             'content' => $htmlContent,
             'rawContent' => $rawContent,
@@ -49,7 +49,7 @@ class DocsController extends Controller
     public function reload(Request $request)
     {
         $this->docsManager->clearCache();
-        
+
         return redirect()->route('docs-manager.index')->with('success', 'Files reloaded successfully!');
     }
 }

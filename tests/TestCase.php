@@ -2,10 +2,10 @@
 
 namespace Diagonal\LaravelDocsManager\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Diagonal\LaravelDocsManager\LaravelDocsManagerServiceProvider;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Inertia\ServiceProvider as InertiaServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
@@ -30,7 +30,7 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
         config()->set('docs-manager.enabled', true);
-        
+
         $app['config']->set('inertia.testing.ensure_pages_exist', false);
     }
 }
