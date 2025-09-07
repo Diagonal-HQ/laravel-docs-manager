@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Diagonal\LaravelDocsManager\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelDocsManagerCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-docs-manager';
 
     public $description = 'My command';
 
