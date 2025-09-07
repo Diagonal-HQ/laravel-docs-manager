@@ -8,4 +8,6 @@ Route::middleware(config('docs-manager.middleware', ['web']))
     ->name('docs-manager.')
     ->group(function () {
         Route::get('/', [DocsController::class, 'index'])->name('index');
+        Route::post('/reload', [DocsController::class, 'reload'])->name('reload');
+        Route::get('/{path}', [DocsController::class, 'show'])->name('show')->where('path', '.*');
     });

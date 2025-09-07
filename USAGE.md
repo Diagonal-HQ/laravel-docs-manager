@@ -8,33 +8,27 @@ Install the package via Composer:
 composer require diagonal/laravel-docs-manager --dev
 ```
 
-## Configuration
+## Setup
 
-Publish the configuration file:
+Run the installation command:
 
 ```bash
-php artisan vendor:publish --tag="docs-manager-config"
+php artisan docs-manager:install
 ```
 
-This will publish a `config/docs-manager.php` file where you can configure:
+That's it! No additional setup required.
+
+## Usage
+
+Visit `/docs` (or your configured route prefix) in your browser to see the docs manager interface.
+
+## Configuration
+
+The installation publishes a `config/docs-manager.php` file where you can configure:
 
 - `route_prefix`: The URL prefix for the docs routes (default: 'docs')
 - `middleware`: Middleware to apply to the routes (default: ['web'])
 - `enabled`: Whether the package is enabled (default: only in local environment)
-
-## Frontend Assets
-
-If you're using Inertia.js with React, publish the frontend assets:
-
-```bash
-php artisan vendor:publish --tag="docs-manager-assets"
-```
-
-This will publish the React components to `resources/js/vendor/laravel-docs-manager/`.
-
-## Usage
-
-Once installed and configured, visit `/docs` (or your configured route prefix) in your browser to see the docs manager interface.
 
 ## Environment Variables
 
@@ -44,6 +38,16 @@ You can also configure the package using environment variables:
 DOCS_MANAGER_ROUTE_PREFIX=docs
 DOCS_MANAGER_ENABLED=true
 ```
+
+## Manual Installation (Advanced)
+
+If you prefer manual setup or the automatic installation fails:
+
+1. Install Inertia.js: `composer require inertiajs/inertia-laravel`
+2. Install frontend deps: `npm install @inertiajs/react react react-dom`
+3. Publish assets: `php artisan vendor:publish --tag="docs-manager-assets"`
+4. Configure your `app.js` to resolve `DocsManager/*` components from `./vendor/laravel-docs-manager/Pages/`
+5. Add `HandleInertiaRequests` middleware to your web group
 
 ## Development
 

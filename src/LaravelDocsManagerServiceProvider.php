@@ -4,7 +4,6 @@ namespace Diagonal\LaravelDocsManager;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Diagonal\LaravelDocsManager\Commands\LaravelDocsManagerCommand;
 
 class LaravelDocsManagerServiceProvider extends PackageServiceProvider
 {
@@ -13,17 +12,14 @@ class LaravelDocsManagerServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-docs-manager')
             ->hasConfigFile('docs-manager')
-            ->hasViews('docs-manager')
-            ->hasRoutes('web')
-            ->hasCommand(LaravelDocsManagerCommand::class);
+            ->hasRoutes('web');
     }
 
     public function packageBooted(): void
     {
         if (config('docs-manager.enabled', true)) {
-            $this->publishes([
-                $this->package->basePath('/../resources/js') => resource_path('js/vendor/laravel-docs-manager'),
-            ], "{$this->package->shortName()}-assets");
+            // Register views
+            $this->loadViewsFrom($this->package->basePath('/../resources/views'), 'laravel-docs-manager');
         }
     }
 
