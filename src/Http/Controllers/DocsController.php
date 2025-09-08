@@ -34,7 +34,7 @@ class DocsController extends Controller
         if ($rawContent === null) {
             abort(404, 'Documentation file not found.');
         }
-        
+
         // Only render HTML on backend if Spatie package is not available
         $htmlContent = $this->docsManager->getMarkdownContentAsHtml($path);
 
