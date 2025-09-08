@@ -179,6 +179,7 @@ class LaravelDocsManager
         try {
             // Use Spatie's markdown renderer
             $renderer = app(\Spatie\LaravelMarkdown\MarkdownRenderer::class);
+
             return $renderer->toHtml($content);
         } catch (\Exception $e) {
             // Fallback to CommonMark if Spatie fails
