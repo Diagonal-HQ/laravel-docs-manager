@@ -14,7 +14,7 @@ The package automatically scans your project for markdown files and provides a c
 You can install the package via composer:
 
 ```bash
-composer require diagonal/laravel-docs-manager
+composer require --dev diagonal/laravel-docs-manager
 ```
 
 That's it! The package will automatically register itself and be ready to use in your local development environment.
