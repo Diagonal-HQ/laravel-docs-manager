@@ -2,27 +2,194 @@
 
 @section('content')
 <style>
-    .prose h1 { @apply text-2xl font-bold text-gray-900 mt-6 mb-4; }
-    .prose h2 { @apply text-xl font-semibold text-gray-900 mt-5 mb-3; }
-    .prose h3 { @apply text-lg font-medium text-gray-900 mt-4 mb-2; }
-    .prose h4 { @apply text-base font-medium text-gray-900 mt-3 mb-2; }
-    .prose h5 { @apply text-sm font-medium text-gray-900 mt-3 mb-1; }
-    .prose h6 { @apply text-sm font-medium text-gray-600 mt-2 mb-1; }
-    .prose p { @apply text-gray-700 mb-4 leading-relaxed; }
-    .prose ul { @apply list-disc list-inside mb-4 space-y-1; }
-    .prose ol { @apply list-decimal list-inside mb-4 space-y-1; }
-    .prose li { @apply text-gray-700; }
-    .prose blockquote { @apply border-l-4 border-gray-300 pl-4 italic text-gray-600 mb-4; }
-    .prose code { @apply bg-gray-100 px-1 py-0.5 rounded text-sm font-mono text-gray-800; }
-    .prose pre { @apply bg-gray-100 p-4 rounded-lg overflow-x-auto mb-4; }
-    .prose pre code { @apply bg-transparent p-0; }
-    .prose a { @apply text-blue-600 hover:text-blue-800 underline; }
-    .prose strong { @apply font-semibold text-gray-900; }
-    .prose em { @apply italic; }
-    .prose hr { @apply border-gray-300 my-6; }
-    .prose table { @apply min-w-full border-collapse mb-4; }
-    .prose th { @apply bg-gray-50 border border-gray-300 px-4 py-2 text-left font-medium text-gray-900; }
-    .prose td { @apply border border-gray-300 px-4 py-2 text-gray-700; }
+    /* Completely reset and override Tailwind for markdown content */
+    .markdown-content {
+        /* Reset Tailwind's normalize and use browser defaults */
+        all: revert;
+        
+        /* Base typography */
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #374151;
+        max-width: none;
+    }
+    
+    .markdown-content h1 {
+        font-size: 2.25em;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: #111827;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+    }
+    
+    .markdown-content h2 {
+        font-size: 1.875em;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: #111827;
+    }
+    
+    .markdown-content h3 {
+        font-size: 1.5em;
+        font-weight: 600;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: #111827;
+    }
+    
+    .markdown-content h4 {
+        font-size: 1.25em;
+        font-weight: 600;
+        margin-top: 1.25rem;
+        margin-bottom: 0.5rem;
+        color: #111827;
+    }
+    
+    .markdown-content h5 {
+        font-size: 1.125em;
+        font-weight: 600;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        color: #111827;
+    }
+    
+    .markdown-content h6 {
+        font-size: 1em;
+        font-weight: 600;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        color: #6b7280;
+    }
+    
+    .markdown-content p {
+        margin-bottom: 1rem;
+        line-height: 1.7;
+    }
+    
+    .markdown-content ul {
+        list-style-type: disc;
+        margin-left: 2rem;
+        margin-bottom: 1rem;
+        padding-left: 0;
+    }
+    
+    .markdown-content ol {
+        list-style-type: decimal;
+        margin-left: 2rem;
+        margin-bottom: 1rem;
+        padding-left: 0;
+    }
+    
+    .markdown-content li {
+        margin-bottom: 0.25rem;
+        line-height: 1.6;
+    }
+    
+    .markdown-content li ul,
+    .markdown-content li ol {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .markdown-content blockquote {
+        border-left: 4px solid #3b82f6;
+        padding-left: 1rem;
+        margin: 1rem 0;
+        font-style: italic;
+        color: #6b7280;
+        background-color: #f8fafc;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    
+    .markdown-content code {
+        background-color: #f3f4f6;
+        padding: 0.125rem 0.25rem;
+        border-radius: 0.25rem;
+        font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+        font-size: 0.875em;
+        color: #1f2937;
+    }
+    
+    .markdown-content pre {
+        background-color: #1f2937;
+        color: #f9fafb;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        margin: 1rem 0;
+        font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+        font-size: 0.875em;
+        line-height: 1.5;
+    }
+    
+    .markdown-content pre code {
+        background-color: transparent;
+        padding: 0;
+        color: inherit;
+        font-size: inherit;
+    }
+    
+    .markdown-content a {
+        color: #2563eb;
+        text-decoration: underline;
+    }
+    
+    .markdown-content a:hover {
+        color: #1d4ed8;
+    }
+    
+    .markdown-content strong,
+    .markdown-content b {
+        font-weight: 600;
+        color: #111827;
+    }
+    
+    .markdown-content em,
+    .markdown-content i {
+        font-style: italic;
+    }
+    
+    .markdown-content hr {
+        border: none;
+        border-top: 1px solid #d1d5db;
+        margin: 2rem 0;
+    }
+    
+    .markdown-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+    }
+    
+    .markdown-content th {
+        background-color: #f9fafb;
+        border: 1px solid #d1d5db;
+        padding: 0.75rem 1rem;
+        text-align: left;
+        font-weight: 600;
+        color: #111827;
+    }
+    
+    .markdown-content td {
+        border: 1px solid #d1d5db;
+        padding: 0.75rem 1rem;
+        color: #374151;
+    }
+    
+    /* Ensure first element doesn't have excessive top margin */
+    .markdown-content > *:first-child {
+        margin-top: 0;
+    }
+    
+    /* Ensure last element doesn't have excessive bottom margin */
+    .markdown-content > *:last-child {
+        margin-bottom: 0;
+    }
 </style>
 
 <div class="h-screen flex bg-gray-50">
@@ -31,7 +198,7 @@
         <!-- Sidebar Header -->
         <div class="p-6 border-b border-gray-200">
             <div class="flex items-center justify-between mb-2">
-                <h1 class="text-xl font-semibold text-gray-900">Laravel Docs Manager</h1>
+                <h1 class="text-xl font-semibold text-gray-900">Docs Manager</h1>
                 <div class="flex items-center space-x-2">
                     <form method="POST" action="{{ route('docs-manager.reload') }}" class="inline">
                         @csrf
@@ -131,27 +298,11 @@
         <!-- Main Content Body -->
         <div class="flex-1 overflow-y-auto bg-gray-50">
             <div class="p-8">
-                @unless($hasEnhancedMarkdown)
-                    <div class="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <svg class="h-5 w-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                                </svg>
-                            </div>
-                            <div class="ml-3">
-                                <h3 class="text-sm font-medium text-blue-800">Enhanced Markdown Support Available</h3>
-                                <div class="mt-2 text-sm text-blue-700">
-                                    <p>For enhanced markdown rendering with syntax highlighting and better formatting, install the Spatie Laravel Markdown package:</p>
-                                    <code class="mt-2 block bg-blue-100 text-blue-900 px-2 py-1 rounded text-xs font-mono">composer require spatie/laravel-markdown</code>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endunless
-                <div id="rendered-content" class="prose prose-lg max-w-none">
+                <div id="rendered-content">
                     <div class="bg-white p-8 rounded-lg border shadow-sm">
-                        {!! $content !!}
+                        <div class="markdown-content">
+                                {!! $content !!}
+                        </div>
                     </div>
                 </div>
                 

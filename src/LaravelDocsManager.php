@@ -155,12 +155,7 @@ class LaravelDocsManager
             return null;
         }
 
-        // Use Spatie Laravel Markdown if available
-        if ($this->hasEnhancedMarkdownSupport()) {
-            return $this->renderWithSpatieMarkdown($content);
-        }
-
-        // Fallback to CommonMark
+        // Use CommonMark for backend rendering (Spatie component handles frontend rendering)
         $converter = new CommonMarkConverter([
             'html_input' => 'strip',
             'allow_unsafe_links' => false,
@@ -172,23 +167,6 @@ class LaravelDocsManager
     public function hasEnhancedMarkdownSupport(): bool
     {
         return class_exists(\Spatie\LaravelMarkdown\MarkdownRenderer::class);
-    }
-
-    protected function renderWithSpatieMarkdown(string $content): string
-    {
-        try {
-            // Use Spatie's markdown renderer
-            $renderer = app(\Spatie\LaravelMarkdown\MarkdownRenderer::class);
-            return $renderer->toHtml($content);
-        } catch (\Exception $e) {
-            // Fallback to CommonMark if Spatie fails
-            $converter = new CommonMarkConverter([
-                'html_input' => 'strip',
-                'allow_unsafe_links' => false,
-            ]);
-
-            return $converter->convert($content)->getContent();
-        }
     }
 
     protected function isFileExcluded(string $filename, array $excludePatterns): bool
