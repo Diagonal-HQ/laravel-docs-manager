@@ -43,6 +43,7 @@ class DocsController extends Controller
             'rawContent' => $rawContent,
             'path' => $path,
             'markdownFiles' => $markdownFiles,
+            'hasEnhancedMarkdown' => $this->docsManager->hasEnhancedMarkdownSupport(),
         ]);
     }
 

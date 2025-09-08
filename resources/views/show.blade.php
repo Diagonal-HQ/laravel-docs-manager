@@ -131,6 +131,24 @@
         <!-- Main Content Body -->
         <div class="flex-1 overflow-y-auto bg-gray-50">
             <div class="p-8">
+                @unless($hasEnhancedMarkdown)
+                    <div class="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-blue-800">Enhanced Markdown Support Available</h3>
+                                <div class="mt-2 text-sm text-blue-700">
+                                    <p>For enhanced markdown rendering with syntax highlighting and better formatting, install the Spatie Laravel Markdown package:</p>
+                                    <code class="mt-2 block bg-blue-100 text-blue-900 px-2 py-1 rounded text-xs font-mono">composer require spatie/laravel-markdown</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endunless
                 <div id="rendered-content" class="prose prose-lg max-w-none">
                     <div class="bg-white p-8 rounded-lg border shadow-sm">
                         {!! $content !!}
