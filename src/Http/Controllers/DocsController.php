@@ -29,12 +29,14 @@ class DocsController extends Controller
 
     public function show(Request $request, string $path)
     {
-        $htmlContent = $this->docsManager->getMarkdownContentAsHtml($path);
         $rawContent = $this->docsManager->getMarkdownContent($path);
 
-        if ($htmlContent === null) {
+        if ($rawContent === null) {
             abort(404, 'Documentation file not found.');
         }
+
+        // Only render HTML on backend if Spatie package is not available
+        $htmlContent = $this->docsManager->getMarkdownContentAsHtml($path);
 
         $markdownFiles = $this->docsManager->getMarkdownFiles();
 

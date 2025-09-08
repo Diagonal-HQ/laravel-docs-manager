@@ -155,12 +155,18 @@ class LaravelDocsManager
             return null;
         }
 
+        // Use CommonMark for backend rendering (Spatie component handles frontend rendering)
         $converter = new CommonMarkConverter([
             'html_input' => 'strip',
             'allow_unsafe_links' => false,
         ]);
 
         return $converter->convert($content)->getContent();
+    }
+
+    public function hasEnhancedMarkdownSupport(): bool
+    {
+        return class_exists(\Spatie\LaravelMarkdown\MarkdownRenderer::class);
     }
 
     protected function isFileExcluded(string $filename, array $excludePatterns): bool

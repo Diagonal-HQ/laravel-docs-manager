@@ -1,5 +1,6 @@
 {
     "name": "diagonal/laravel-docs-manager",
+    "version": "1.0.0",
     "description": "A simple package to browse markdown files in Laravel project filesystems in local environments",
     "keywords": [
         "Diagonal",
